@@ -1,197 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>HACKED BY TRS | The Rebel Squad</title>
+  <title>HACKED BY TRS | The Rebel Squad</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Iceland&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Iceland&display=swap" rel="stylesheet">
 
-<style>
-html,body{
-  width:100%;
-  height:100%;
-  margin:0;
-  padding:0;
-  overflow:hidden;
-  background:#000;
-  font-family:'Share Tech Mono', monospace;
-}
+  <style>
+    /* GLOBAL */
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #000;
+      font-family: 'Share Tech Mono', monospace;
+    }
 
-/* ===== IMGUR VIDEO BACKGROUND ===== */
-video{
-  position:fixed;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:-10;
-}
+    /* VIDEO BACKGROUND */
+    .video-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -10;
+      overflow: hidden;
+      pointer-events: none;
+    }
 
-/* ===== EFFECTS ===== */
-.thunder{
-  position:fixed;
-  inset:0;
-  background:rgba(255,255,255,.8);
-  opacity:0;
-  animation:flash 7s infinite;
-  z-index:5;
-  pointer-events:none;
-}
+    .video-bg video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-@keyframes flash{
-  0%{opacity:0}
-  1%{opacity:.25}
-  2%{opacity:0}
-  3%{opacity:.5}
-  4%{opacity:0}
-  90%{opacity:0}
-  92%{opacity:.2}
-  93%{opacity:0}
-  100%{opacity:0}
-}
+    /* EFFECTS */
+    .thunder {
+      position: fixed;
+      inset: 0;
+      background: rgba(255,255,255,0.8);
+      opacity: 0;
+      animation: flash 7s infinite;
+      z-index: 5;
+      pointer-events: none;
+    }
 
-.scanlines{
-  position:fixed;
-  inset:0;
-  background:repeating-linear-gradient(
-    to bottom,
-    rgba(255,255,255,.02),
-    rgba(255,255,255,.02) 2px,
-    rgba(0,0,0,.25) 2px,
-    rgba(0,0,0,.25) 4px
-  );
-  z-index:10;
-  pointer-events:none;
-}
+    @keyframes flash {
+      0%{opacity:0}
+      1%{opacity:.2}
+      2%{opacity:0}
+      3%{opacity:.4}
+      4%{opacity:0}
+      90%{opacity:0}
+      92%{opacity:.2}
+      93%{opacity:0}
+      100%{opacity:0}
+    }
 
-.vignette{
-  position:fixed;
-  inset:0;
-  background:radial-gradient(circle, transparent 45%, rgba(0,0,0,.9) 100%);
-  z-index:11;
-  pointer-events:none;
-}
+    .scanlines {
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.02),
+        rgba(255,255,255,0.02) 2px,
+        rgba(0,0,0,0.2) 2px,
+        rgba(0,0,0,0.2) 4px
+      );
+      z-index: 10;
+      pointer-events: none;
+    }
 
-/* ===== CENTER CONTENT ===== */
-.center{
-  position:relative;
-  width:100%;
-  height:100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:20;
-}
+    .vignette {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle, transparent 50%, rgba(0,0,0,.8) 100%);
+      z-index: 11;
+      pointer-events: none;
+    }
 
-/* ===== BIG IMAGE BOX ===== */
-.image-box{
-  width:98vw;          /* আগের থেকে বড় */
-  max-width:1200px;    /* desktop-এ আরও বড় */
-  aspect-ratio:16/9;
-  border:4px solid #ef4444;
-  border-radius:8px;
-  overflow:hidden;
-  background:#000;
-  animation:breathe 4s infinite ease-in-out;
-}
+    /* CENTER CONTENT */
+    .center {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 20;
+    }
 
-.image-box img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
+    .image-box {
+      width: 98vw;
+      max-width: 1200px;
+      aspect-ratio: 16/9;
+      border: 4px solid #ef4444;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #000;
+      animation: breathe 4s infinite ease-in-out;
+    }
 
-@keyframes breathe{
-  0%{box-shadow:0 0 30px rgba(239,68,68,.4)}
-  50%{box-shadow:0 0 90px rgba(239,68,68,.9)}
-  100%{box-shadow:0 0 30px rgba(239,68,68,.4)}
-}
+    @keyframes breathe {
+      0%   { box-shadow: 0 0 30px rgba(239,68,68,.4); }
+      50%  { box-shadow: 0 0 90px rgba(239,68,68,.9); }
+      100% { box-shadow: 0 0 30px rgba(239,68,68,.4); }
+    }
 
-/* ===== MARQUEE ===== */
-.marquee{
-  position:fixed;
-  bottom:40px;
-  width:100%;
-  background:rgba(0,0,0,.9);
-  border-top:1px solid #eab308;
-  border-bottom:1px solid #eab308;
-  overflow:hidden;
-  white-space:nowrap;
-  z-index:30;
-}
+    .image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-.marquee span{
-  display:inline-block;
-  padding:8px 0;
-  animation:scroll 18s linear infinite;
-  color:#eab308;
-  font-family:'Iceland', cursive;
-  font-size:1.2rem;
-  letter-spacing:2px;
-}
+    /* MARQUEE */
+    .marquee {
+      position: fixed;
+      bottom: 40px;
+      width: 100%;
+      background: rgba(0,0,0,.9);
+      border-top: 1px solid #eab308;
+      border-bottom: 1px solid #eab308;
+      overflow: hidden;
+      white-space: nowrap;
+      z-index: 30;
+    }
 
-@keyframes scroll{
-  from{transform:translateX(100%)}
-  to{transform:translateX(-100%)}
-}
+    .marquee span {
+      display: inline-block;
+      padding: 8px 0;
+      animation: scroll 18s linear infinite;
+      color: #eab308;
+      font-family: 'Iceland', cursive;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+    }
 
-/* ===== FOOTER ===== */
-footer{
-  position:fixed;
-  bottom:0;
-  width:100%;
-  text-align:center;
-  font-size:10px;
-  color:#666;
-  padding:6px 0;
-  background:#000;
-  border-top:1px solid #333;
-  z-index:40;
-}
-</style>
+    @keyframes scroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* FOOTER */
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 10px;
+      color: #666;
+      padding: 6px 0;
+      background: #000;
+      border-top: 1px solid #333;
+      z-index: 40;
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- IMGUR VIDEO BACKGROUND -->
-<video id="bgVideo" autoplay muted loop playsinline preload="auto">
-  <source src="https://i.imgur.com/BBKEbCC.mp4" type="video/mp4">
-</video>
-
-<!-- EFFECT LAYERS -->
-<div class="thunder"></div>
-<div class="scanlines"></div>
-<div class="vignette"></div>
-
-<!-- MAIN IMAGE -->
-<div class="center">
-  <div class="image-box">
-    <img src="https://i.postimg.cc/QtgL5WcY/20251225-005248-pxbee-minitools-enhance-2025122505523.jpg" alt="TRS">
+  <!-- IMGUR VIDEO BACKGROUND -->
+  <div class="video-bg">
+    <video id="bgVideo" autoplay muted loop playsinline preload="auto">
+      <source src="https://i.imgur.com/BBKEbCC.mp4" type="video/mp4">
+    </video>
   </div>
-</div>
 
-<!-- MARQUEE -->
-<div class="marquee">
-  <span>
-    +++ HACKED BY THE REBEL SQUAD +++ GREETZ: ARIF VAU +++ PATCH YOUR SYSTEM +++ WE WILL RETURN +++
-  </span>
-</div>
+  <!-- EFFECTS -->
+  <div class="thunder"></div>
+  <div class="scanlines"></div>
+  <div class="vignette"></div>
 
-<!-- FOOTER -->
-<footer>
-  © 2025 The Rebel Squad | Connection Established
-</footer>
+  <!-- MAIN CONTENT -->
+  <div class="center">
+    <div class="image-box">
+      <img src="https://i.postimg.cc/QtgL5WcY/20251225-005248-pxbee-minitools-enhance-2025122505523.jpg" alt="TRS">
+    </div>
+  </div>
 
-<!-- FORCE AUTOPLAY (MOBILE FIX) -->
-<script>
-const v = document.getElementById("bgVideo");
-v.muted = true;
-v.play().catch(()=>{
-  document.body.addEventListener("click",()=>v.play(),{once:true});
-});
-</script>
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <span>
+      +++ HACKED BY THE REBEL SQUAD +++ GREETZ: ARIF VAU +++ PATCH YOUR SYSTEM +++ WE WILL RETURN +++
+    </span>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 The Rebel Squad | Connection Established
+  </footer>
+
+  <!-- FORCE AUTOPLAY (IMPORTANT FOR MOBILE / BROWSER) -->
+  <script>
+    const v = document.getElementById("bgVideo");
+    v.muted = true;
+    v.play().catch(() => {
+      document.body.addEventListener("click", () => v.play(), { once: true });
+    });
+  </script>
 
 </body>
 </html>
