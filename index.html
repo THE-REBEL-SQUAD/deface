@@ -7,6 +7,7 @@
 <title>HACKED BY TRS | The Rebel Squad</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Iceland&display=swap" rel="stylesheet">
+
 <style>
 html,body{
   width:100%;
@@ -17,22 +18,32 @@ html,body{
   overflow:hidden;
 }
 
-/* VIDEO */
+/* ===== VIDEO BACKGROUND ===== */
 .video-bg{
   position:fixed;
   inset:0;
-  z-index:0;          /* ✅ FIXED */
+  z-index:0;
 }
 .video-bg video{
   width:100%;
   height:100%;
   object-fit:cover;
+  filter: brightness(0.45) blur(2px);   /* 🔥 DARK + SLIGHT BLUR */
+  transform:scale(1.04);
 }
 
-/* CENTER */
+/* ===== VIDEO OVERLAY ===== */
+.video-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.45);          /* 🔥 extra dark layer */
+  z-index:1;
+}
+
+/* ===== CENTER CONTENT ===== */
 .center{
   position:relative;
-  z-index:2;          /* ✅ ABOVE VIDEO */
+  z-index:3;
   width:100%;
   height:100svh;
   display:flex;
@@ -40,32 +51,46 @@ html,body{
   align-items:center;
 }
 
-/* IMAGE BOX */
+/* ===== IMAGE BOX ===== */
 .image-box{
-  width:65vw;
-  max-width:700px;
+  position:relative;
+  width:60vw;
+  max-width:650px;
   aspect-ratio:16/9;
   border:3px solid #ef4444;
   border-radius:8px;
   overflow:hidden;
   animation:glow 4s infinite ease-in-out;
 }
+
+/* IMAGE BOX OVERLAY */
+.image-box::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.25);          /* 🔥 image overlay */
+  z-index:2;
+}
+
 @keyframes glow{
   0%{box-shadow:0 0 15px rgba(239,68,68,.4)}
   50%{box-shadow:0 0 55px rgba(239,68,68,.9)}
   100%{box-shadow:0 0 15px rgba(239,68,68,.4)}
 }
+
 .image-box img{
   width:100%;
   height:100%;
   object-fit:cover;
+  opacity:0.75;                          /* 🔥 image opacity কম */
+  filter:contrast(1.15) brightness(1.1);
 }
 
-/* MARQUEE */
+/* ===== MARQUEE ===== */
 .marquee{
   position:fixed;
   bottom:0;
-  z-index:3;          /* ✅ TOP LAYER */
+  z-index:4;
   width:100%;
   background:#000;
   border-top:1px solid #eab308;
@@ -85,13 +110,9 @@ html,body{
   to{transform:translateX(-100%)}
 }
 </style>
-
 </head>
 
 <body>
-
-<!-- FALLBACK IMAGE -->
-<div class="fallback"></div>
 
 <!-- VIDEO -->
 <div class="video-bg">
@@ -100,9 +121,8 @@ html,body{
   </video>
 </div>
 
-<!-- CINEMATIC LAYERS -->
-<div class="overlay"></div>
-<div class="noise"></div>
+<!-- VIDEO DARK OVERLAY -->
+<div class="video-overlay"></div>
 
 <!-- CENTER IMAGE -->
 <div class="center">
