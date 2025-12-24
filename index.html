@@ -7,7 +7,6 @@
 <title>HACKED BY TRS | The Rebel Squad</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Iceland&display=swap" rel="stylesheet">
-
 <style>
 html,body{
   width:100%;
@@ -22,7 +21,7 @@ html,body{
 .video-bg{
   position:fixed;
   inset:0;
-  z-index:-10;
+  z-index:0;          /* ✅ FIXED */
 }
 .video-bg video{
   width:100%;
@@ -32,12 +31,13 @@ html,body{
 
 /* CENTER */
 .center{
+  position:relative;
+  z-index:2;          /* ✅ ABOVE VIDEO */
   width:100%;
   height:100svh;
   display:flex;
   justify-content:center;
   align-items:center;
-  z-index:20;
 }
 
 /* IMAGE BOX */
@@ -65,12 +65,12 @@ html,body{
 .marquee{
   position:fixed;
   bottom:0;
+  z-index:3;          /* ✅ TOP LAYER */
   width:100%;
   background:#000;
   border-top:1px solid #eab308;
   overflow:hidden;
   white-space:nowrap;
-  z-index:50;
 }
 .marquee span{
   display:inline-block;
