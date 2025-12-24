@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-<title>HACKED BY TEAM TRS x TEAM UCS x TEAM TCF</title>
+<title>HACKED BY TRS | The Rebel Squad</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Iceland&display=swap" rel="stylesheet">
+
 <style>
 html,body{
   width:100%;
@@ -17,11 +18,11 @@ html,body{
   overflow:hidden;
 }
 
-/* VIDEO */
+/* ===== VIDEO LAYER ===== */
 .video-bg{
   position:fixed;
   inset:0;
-  z-index:0;          /* ✅ FIXED */
+  z-index:0;
 }
 .video-bg video{
   width:100%;
@@ -29,15 +30,47 @@ html,body{
   object-fit:cover;
 }
 
-/* CENTER */
+/* ===== FALLBACK IMAGE ===== */
+.fallback{
+  position:fixed;
+  inset:0;
+  background:url("https://i.postimg.cc/QtgL5WcY/20251225-005248-pxbee-minitools-enhance-2025122505523.jpg")
+             center/cover no-repeat;
+  z-index:-1;
+}
+
+/* ===== CINEMATIC OVERLAY ===== */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at center,
+      rgba(0,0,0,0.3) 0%,
+      rgba(0,0,0,0.75) 70%,
+      rgba(0,0,0,0.9) 100%);
+  z-index:1;
+}
+
+/* ===== NOISE EFFECT ===== */
+.noise{
+  position:fixed;
+  inset:0;
+  background-image:url("https://grainy-gradients.vercel.app/noise.png");
+  opacity:0.08;
+  mix-blend-mode:overlay;
+  z-index:2;
+  pointer-events:none;
+}
+
+/* ===== CENTER CONTENT ===== */
 .center{
   position:relative;
-  z-index:2;          /* ✅ ABOVE VIDEO */
+  z-index:5;
   width:100%;
   height:100svh;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
 }
 
 /* IMAGE BOX */
@@ -61,11 +94,11 @@ html,body{
   object-fit:cover;
 }
 
-/* MARQUEE */
+/* ===== MARQUEE ===== */
 .marquee{
   position:fixed;
   bottom:0;
-  z-index:3;          /* ✅ TOP LAYER */
+  z-index:6;
   width:100%;
   background:#000;
   border-top:1px solid #eab308;
@@ -89,12 +122,19 @@ html,body{
 
 <body>
 
+<!-- FALLBACK IMAGE -->
+<div class="fallback"></div>
+
 <!-- VIDEO -->
 <div class="video-bg">
   <video id="bgVideo" autoplay muted loop playsinline preload="metadata">
     <source src="https://pub-7ccadcc3c14145d9b10aa404273d4530.r2.dev/bg.mp4" type="video/mp4">
   </video>
 </div>
+
+<!-- CINEMATIC LAYERS -->
+<div class="overlay"></div>
+<div class="noise"></div>
 
 <!-- CENTER IMAGE -->
 <div class="center">
@@ -116,10 +156,10 @@ const video = document.getElementById("bgVideo");
 /* autoplay muted */
 video.play().catch(()=>{});
 
-/* ANY CLICK = SOUND ON (only once) */
+/* click anywhere = sound ON */
 const enableSound = () => {
   video.muted = false;
-  video.volume = 1.0;
+  video.volume = 1;
   video.play();
   document.removeEventListener("click", enableSound);
   document.removeEventListener("touchstart", enableSound);
